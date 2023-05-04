@@ -63,6 +63,10 @@ pipeline {
         
         stage('Update K8S manifest & push to Repo'){
             steps {
+                environment {
+                    GIT_REPO_NAME = "jenkins-argocd-k8s"
+                    GIT_USER_NAME = "vihabobade"
+                }
                 script{
                     withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
                         sh '''
@@ -72,7 +76,7 @@ pipeline {
                         git add deploy.yaml
                         git commit -m 'Updated the deploy yaml | Jenkins Pipeline'
                         git remote -v
-                        git push https://github.com/vihabobade/python-jenkins-argocd-k8s.git HEAD:main
+                        git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
                         '''                        
                     }
                 }
