@@ -54,9 +54,13 @@ pipeline {
         }
         
         stage('Checkout K8S manifest SCM'){
+            environment {
+                GIT_REPO_NAME = "jenkins-argocd-k8s"
+                GIT_USER_NAME = "vihabobade"
+            }
             steps {
                 git credentialsId: 'github', 
-                url: 'https://github.com/vihabobade/python-jenkins-argocd-k8s.git',
+                url: "https://github.com/${GIT_USER_NAME}/${GIT_REPO_NAME}.git",
                 branch: 'main'
             }
         }
