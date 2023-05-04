@@ -59,7 +59,7 @@ pipeline {
                 GIT_USER_NAME = "vihabobade"
             }
             steps {
-                git credentialsId: 'github-uap', 
+                git credentialsId: 'github', 
                 // git passwordVariable: 'GIT_PASSWORD', 
                 // git usernameVariable: 'GIT_USERNAME',
                 url: "https://github.com/${GIT_USER_NAME}/${GIT_REPO_NAME}.git",
