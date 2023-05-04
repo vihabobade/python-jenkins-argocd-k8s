@@ -72,7 +72,8 @@ pipeline {
             }
             steps {
                 script{
-                    withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
+                    // withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
+                    withCredentials([usernamePassword(credentialsId: 'github-uap', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
                         sh '''
                         git config user.email "viha.bobade@gmail.com"
                         git config user.name "Viha Bobade"
