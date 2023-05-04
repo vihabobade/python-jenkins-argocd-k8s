@@ -85,7 +85,10 @@ pipeline {
                         sed -i "s/8/${BUILD_NUMBER}/g" deploy.yaml
                         git add deploy.yaml
                         git commit -m 'Updated the deploy yaml | Jenkins Pipeline'
-                        git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
+                        git remote -v
+                        git push https://github.com/vihabobade/python-jenkins-argocd-k8s.git HEAD:main
+                        #git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
+                        
                         '''                        
                     }
                 }
