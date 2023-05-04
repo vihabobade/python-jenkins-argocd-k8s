@@ -82,9 +82,9 @@ pipeline {
                         git config user.password "Djay@7079"
                         BUILD_NUMBER=${BUILD_NUMBER}
                         cat deploy/deploy.yaml
-                        cd deploy
-                        sed -i "s/9/${BUILD_NUMBER}/g" deploy.yaml
-                        git add deploy.yaml
+                        #cd deploy
+                        sed -i "s/9/${BUILD_NUMBER}/g" deploy/deploy.yaml
+                        git add deploy/deploy.yaml
                         git commit -m 'Updated the deploy yaml | Jenkins Pipeline'
                         git remote -v
                         git push https://github.com/vihabobade/python-jenkins-argocd-k8s.git HEAD:main
