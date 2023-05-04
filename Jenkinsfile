@@ -55,7 +55,7 @@ pipeline {
         
         stage('Checkout K8S manifest SCM'){
             environment {
-                GIT_REPO_NAME = "jenkins-argocd-k8s"
+                GIT_REPO_NAME = "python-jenkins-argocd-k8s"
                 GIT_USER_NAME = "vihabobade"
             }
             steps {
@@ -67,7 +67,7 @@ pipeline {
         
         stage('Update K8S manifest & push to Repo'){
             environment {
-                GIT_REPO_NAME = "jenkins-argocd-k8s"
+                GIT_REPO_NAME = "python-jenkins-argocd-k8s"
                 GIT_USER_NAME = "vihabobade"
             }
             steps {
