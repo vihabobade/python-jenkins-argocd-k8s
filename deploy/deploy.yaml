@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: todo
-        image: abhishekf5/todo-app:v1
+        image: vihabobade/python-jenkins-argocd-k8s:32
         ports:
         - containerPort: 8000
