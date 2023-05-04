@@ -79,7 +79,7 @@ pipeline {
                         BUILD_NUMBER=${BUILD_NUMBER}
                         cd deploy
                         cat deploy.yaml
-                        sed -i '' "s/7/${BUILD_NUMBER}/g" deploy.yaml
+                        sed -i '' "s/8/${BUILD_NUMBER}/g" deploy.yaml
                         git add deploy.yaml
                         git commit -m 'Updated the deploy yaml | Jenkins Pipeline'
                         git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
