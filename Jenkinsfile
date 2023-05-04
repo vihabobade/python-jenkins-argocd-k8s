@@ -60,8 +60,8 @@ pipeline {
             }
             steps {
                 git credentialsId: 'github-uap', 
-                git passwordVariable: 'GIT_PASSWORD', 
-                git usernameVariable: 'GIT_USERNAME',
+                // git passwordVariable: 'GIT_PASSWORD', 
+                // git usernameVariable: 'GIT_USERNAME',
                 url: "https://github.com/${GIT_USER_NAME}/${GIT_REPO_NAME}.git",
                 branch: 'main'
             }
