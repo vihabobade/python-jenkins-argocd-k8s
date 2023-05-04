@@ -74,12 +74,14 @@ pipeline {
                 script{
                     withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
                         sh '''
+                        git config user.email "viha.bobade@gmail.com"
+                        git config user.name "Viha Bobade"
+                        BUILD_NUMBER=${BUILD_NUMBER}
+                        cd deploy
                         cat deploy.yaml
                         sed -i '' "s/5/${BUILD_NUMBER}/g" deploy.yaml
-                        cat deploy.yaml
                         git add deploy.yaml
                         git commit -m 'Updated the deploy yaml | Jenkins Pipeline'
-                        git remote -v
                         git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
                         '''                        
                     }
