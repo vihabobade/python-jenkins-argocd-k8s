@@ -78,7 +78,8 @@ pipeline {
                     withCredentials([usernamePassword(credentialsId: 'github-uap', passwordVariable: 'Djay@7079', usernameVariable: 'vihabobade')]) {
                         sh '''
                         git config user.email "viha.bobade@gmail.com"
-                        git config user.name "Viha Bobade"
+                        git config user.name "vihabobade"
+                        git config user.password "Djay@7079"
                         BUILD_NUMBER=${BUILD_NUMBER}
                         cat deploy/deploy.yaml
                         cd deploy
