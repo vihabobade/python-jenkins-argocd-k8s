@@ -62,11 +62,11 @@ pipeline {
         }
         
         stage('Update K8S manifest & push to Repo'){
+            environment {
+                GIT_REPO_NAME = "jenkins-argocd-k8s"
+                GIT_USER_NAME = "vihabobade"
+            }
             steps {
-                environment {
-                    GIT_REPO_NAME = "jenkins-argocd-k8s"
-                    GIT_USER_NAME = "vihabobade"
-                }
                 script{
                     withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
                         sh '''
