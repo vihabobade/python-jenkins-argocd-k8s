@@ -10,8 +10,8 @@ pipeline {
         
         stage('Checkout'){
            steps {
-                git credentialsId: 'f87a34a8-0e09-45e7-b9cf-6dc68feac670', 
-                url: 'https://github.com/iam-veeramalla/cicd-end-to-end',
+                git credentialsId: 'github', 
+                url: 'https://github.com/vihabobade/python-jenkins-argocd-k8s',
                 branch: 'main'
            }
         }
@@ -21,7 +21,7 @@ pipeline {
                 script{
                     sh '''
                     echo 'Buid Docker Image'
-                    docker build -t abhishekf5/cicd-e2e:${BUILD_NUMBER} .
+                    docker build -t vihabobade/python-jenkins-argocd-k8s:${BUILD_NUMBER} .
                     '''
                 }
             }
@@ -32,7 +32,7 @@ pipeline {
                 script{
                     sh '''
                     echo 'Push to Repo'
-                    docker push abhishekf5/cicd-e2e:${BUILD_NUMBER}
+                    docker push vihabobade/python-jenkins-argocd-k8s:${BUILD_NUMBER}
                     '''
                 }
             }
@@ -40,8 +40,8 @@ pipeline {
         
         stage('Checkout K8S manifest SCM'){
             steps {
-                git credentialsId: 'f87a34a8-0e09-45e7-b9cf-6dc68feac670', 
-                url: 'https://github.com/iam-veeramalla/cicd-demo-manifests-repo.git',
+                git credentialsId: 'github', 
+                url: 'https://github.com/vihabobade/python-jenkins-argocd-k8s.git',
                 branch: 'main'
             }
         }
@@ -49,7 +49,7 @@ pipeline {
         stage('Update K8S manifest & push to Repo'){
             steps {
                 script{
-                    withCredentials([usernamePassword(credentialsId: 'f87a34a8-0e09-45e7-b9cf-6dc68feac670', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
+                    withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
                         sh '''
                         cat deploy.yaml
                         sed -i '' "s/32/${BUILD_NUMBER}/g" deploy.yaml
