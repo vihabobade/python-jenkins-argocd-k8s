@@ -74,8 +74,8 @@ pipeline {
             }
             steps {
                 script{
-                    // withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
-                    withCredentials([usernamePassword(credentialsId: 'github-uap', passwordVariable: 'Djay@7079', usernameVariable: 'vihabobade')]) {
+                     withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
+                    //withCredentials([usernamePassword(credentialsId: 'github-uap', passwordVariable: 'Djay@7079', usernameVariable: 'vihabobade')]) {
                         sh '''
                         git config user.email "viha.bobade@gmail.com"
                         git config user.name "vihabobade"
@@ -87,8 +87,8 @@ pipeline {
                         git add deploy/deploy.yaml
                         git commit -m 'Updated the deploy yaml | Jenkins Pipeline'
                         git remote -v
-                        git push https://github.com/vihabobade/python-jenkins-argocd-k8s.git HEAD:main
-                        #git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
+                        #git push https://github.com/vihabobade/python-jenkins-argocd-k8s.git HEAD:main
+                        git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
                         
                         '''                        
                     }
